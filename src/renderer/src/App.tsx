@@ -1,9 +1,12 @@
+import CreateProvider from './contexts/createContext'
 import { Routes } from "./routes"
 
 function App(): JSX.Element {
 
   return (
-    <Routes />
+    <CreateProvider>
+      <Routes />
+    </CreateProvider>
   )
 }
 
