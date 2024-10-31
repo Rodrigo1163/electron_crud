@@ -7,7 +7,7 @@ export function Siderbar() {
     const isMacOS = process.platform === 'darwin'
     return (
         <Collapsible.Content
-            className='bg-gray-950 flex-shrink-0 border-r border-slate-600 h-screen relative group overflow-hidden'
+            className='bg-gray-950 flex-shrink-0 border-r border-slate-600 h-screen relative group overflow-hidden data-[state=open]:animate-slideIn data-[state=closed]:animate-slideOut'
         >
 
             <Collapsible.Trigger
@@ -25,8 +25,17 @@ export function Siderbar() {
             </Collapsible.Trigger>
 
             <div
+                className={clsx('region-drag h-14 z-0 mt-10', {
+                    block: isMacOS,
+                    hidden: !isMacOS
+                })}
+            >
+
+            </div>
+
+            <div
                 className={clsx(
-                    'flex-1 flex flex-col h-full gap-8 w-[220px] transition-opacity duration-200',
+                    'flex-1 flex flex-col h-full gap-8 w-[220px] transition-opacity group-data-[state=open]:opacity-100 group-data-[state=closed]:opacity-0 duration-200',
                     {
                         'pt-6': !isMacOS
                     }
@@ -41,7 +50,9 @@ export function Siderbar() {
 
                     <section className='flex flex-col gap-px'>
                         <LinkContent to="/">Clientes</LinkContent>
+
                         <LinkContent to="/create">Cadastrar Clientes</LinkContent>
+
                         <LinkContent to="/about">Sobre</LinkContent>
                     </section>
                 </nav>

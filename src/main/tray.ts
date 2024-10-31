@@ -14,6 +14,9 @@ export function createTray(windows: BrowserWindow) {
             click: () => {
                 // enviar mensagem do processo (main) para o processo frontend (renderer)
                 windows.webContents.send("new-customer");
+
+                if(windows.isMinimized()) windows.restore();
+                windows.focus()
             }
         },
         {
