@@ -22,7 +22,10 @@ const api = {
    return  ipcRenderer.invoke("fetch-users")
   },
   addCustomer: (doc: NewCustomer): Promise<void | PouchDB.Core.Response> => ipcRenderer.invoke("add-customer", doc),
-  fetchAllCustomers: (): Promise<Customer[]> => ipcRenderer.invoke("fetch-all-customers")
+  fetchAllCustomers: (): Promise<Customer[]> => ipcRenderer.invoke("fetch-all-customers"),
+  fetchCustomerById: (docId: string): Promise<Customer> => ipcRenderer.invoke('fetch-customer-id', docId),
+  deleteCustomer: (docId: string) => ipcRenderer.invoke("delete-customer", docId),
+  getVersionApp: () => ipcRenderer.invoke("get-version")
 
 }
 

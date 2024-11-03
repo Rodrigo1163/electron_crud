@@ -1,11 +1,15 @@
+import { QueryClientProvider } from '@tanstack/react-query'
 import CreateProvider from './contexts/createContext'
-import { Routes } from "./routes"
+import { queryClient } from './lib/react-query'
+import { Routes } from "./Routes"
 
 function App(): JSX.Element {
 
   return (
     <CreateProvider>
-      <Routes />
+      <QueryClientProvider client={queryClient}>
+        <Routes />
+      </QueryClientProvider>
     </CreateProvider>
   )
 }
